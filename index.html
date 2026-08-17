@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UI Kit — Style Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink:#FF66C4;
+    --pink-dark:#E6449F;
+    --brown:#583A2A;
+    --brown-soft:#7A5540;
+    --purple:#CB6CE6;
+    --purple-dark:#AD44CC;
+    --yellow:#FBC937;
+    --yellow-dark:#E0A916;
+    --lavender:#F1EEF9;
+    --white:#FFFFFF;
+    --ink:#583A2A;
+    --ink-soft:#8A7264;
+    --line: #E4DCEE;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 22px;
+    --radius-pill: 999px;
+    --shadow-sm: 0 2px 8px rgba(88,58,42,0.08);
+    --shadow-md: 0 8px 24px rgba(88,58,42,0.12);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--lavender);
+    color:var(--ink);
+    font-family:'Open Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Noto Serif Display', serif;
+    font-weight:600;
+    margin:0;
+    color:var(--brown);
+  }
+
+  p{margin:0;}
+
+  ::selection{ background:var(--pink); color:white; }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+    outline: 3px solid var(--purple);
+    outline-offset: 2px;
+  }
+
+  /* ---------- Layout ---------- */
+  .wrap{ max-width:1160px; margin:0 auto; padding: 0 32px 120px; }
+
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter: blur(10px);
+    background: rgba(241,238,249,0.85);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:1160px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between; gap:24px;
+  }
+  .brandmark{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Noto Serif Display', serif; font-weight:600; font-size:19px; color:var(--brown);
+  }
+  .brandmark .dot{
+    width:16px; height:16px; border-radius:50%;
+    background: conic-gradient(from 180deg, var(--pink), var(--purple), var(--yellow), var(--pink));
+    flex-shrink:0;
+  }
+  .topnav{ display:flex; gap:6px; flex-wrap:wrap; }
+  .topnav a{
+    font-size:13.5px; font-weight:600; color:var(--brown-soft);
+    text-decoration:none; padding:8px 14px; border-radius:var(--radius-pill);
+    transition: background .15s ease, color .15s ease;
+  }
+  .topnav a:hover{ background:var(--white); color:var(--pink-dark); }
+
+  .hero{ padding: 90px 0 70px; }
+  .hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--purple-dark); background:#F3E4FA; padding:7px 14px; border-radius:var(--radius-pill);
+    margin-bottom:22px;
+  }
+  .hero h1{ font-size:clamp(38px,6vw,64px); line-height:1.05; max-width:14ch; letter-spacing:-0.01em; }
+  .hero p.lede{
+    font-size:18px; line-height:1.6; color:var(--brown-soft); max-width:60ch; margin-top:20px;
+  }
+  .hero-swatches{ display:flex; gap:10px; margin-top:40px; flex-wrap:wrap; }
+  .hero-chip{
+    height:52px; border-radius:var(--radius-pill); display:flex; align-items:center; gap:10px;
+    padding:0 18px 0 6px; box-shadow:var(--shadow-sm);
+  }
+  .hero-chip .swatch-dot{ width:40px; height:40px; border-radius:50%; }
+  .hero-chip span{ font-family:'Open Sans',sans-serif; font-weight:700; font-size:13px; }
+
+  section.block{ padding-top:76px; scroll-margin-top:96px; }
+  .block-head{ display:flex; align-items:baseline; justify-content:space-between; gap:20px; margin-bottom:36px; flex-wrap:wrap; }
+  .block-head .num{ font-size:13px; font-weight:700; color:var(--purple-dark); letter-spacing:.06em; }
+  .block-head h2{ font-size:32px; margin-top:6px; }
+  .block-head p{ color:var(--ink-soft); font-size:15px; max-width:44ch; }
+
+  .panel{
+    background:var(--white); border-radius:var(--radius-lg); border:1px solid var(--line);
+    padding:36px; box-shadow:var(--shadow-sm);
+  }
+
+  /* ---------- Colors ---------- */
+  .color-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px; }
+  .swatch{
+    border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--line); background:var(--white);
+  }
+  .swatch-fill{ height:110px; position:relative; }
+  .swatch-fill .on-fill{
+    position:absolute; bottom:12px; left:14px; font-weight:700; font-size:13px;
+    font-family:'Open Sans',sans-serif;
+  }
+  .swatch-meta{ padding:16px; }
+  .swatch-meta .name{ font-weight:700; font-size:15px; color:var(--brown); }
+  .swatch-meta .hex{ font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size:13px; color:var(--ink-soft); margin-top:2px; }
+  .swatch-meta .usage{ font-size:12.5px; color:var(--ink-soft); margin-top:10px; line-height:1.5; }
+
+  .tint-row{ display:flex; margin-top:14px; border-radius:var(--radius-sm); overflow:hidden; border:1px solid var(--line); }
+  .tint-row div{ flex:1; height:34px; }
+
+  /* ---------- Typography ---------- */
+  .type-row{ display:flex; align-items:baseline; gap:24px; padding:20px 0; border-bottom:1px dashed var(--line); }
+  .type-row:last-child{ border-bottom:none; }
+  .type-tag{ font-size:11px; font-weight:700; color:var(--ink-soft); width:110px; flex-shrink:0; text-transform:uppercase; letter-spacing:.06em; }
+  .type-sample.serif{ font-family:'Noto Serif Display', serif; color:var(--brown); }
+  .type-sample.sans{ font-family:'Open Sans', sans-serif; color:var(--brown); }
+  .specs{ margin-left:auto; font-size:12px; color:var(--ink-soft); white-space:nowrap; font-family: ui-monospace, monospace; }
+
+  .font-cards{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:40px; }
+  .font-card{ background:var(--white); border:1px solid var(--line); border-radius:var(--radius-md); padding:26px; }
+  .font-card .label{ font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--purple-dark); }
+  .font-card .big{ font-size:40px; margin:14px 0 6px; }
+  .font-card .desc{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+  /* ---------- Buttons ---------- */
+  .row{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .row + .row{ margin-top:22px; }
+  .btn{
+    font-family:'Open Sans', sans-serif; font-weight:700; font-size:14.5px;
+    border-radius:var(--radius-pill); border:2px solid transparent; cursor:pointer;
+    padding:13px 26px; display:inline-flex; align-items:center; gap:8px;
+    transition: transform .12s ease, box-shadow .12s ease, background .15s ease, border-color .15s ease, color .15s ease;
+  }
+  .btn:active{ transform: scale(0.97); }
+  .btn-primary{ background:var(--pink); color:white; box-shadow:0 6px 16px rgba(255,102,196,0.4); }
+  .btn-primary:hover{ background:var(--pink-dark); box-shadow:0 8px 20px rgba(230,68,159,0.45); }
+  .btn-secondary{ background:var(--purple); color:white; box-shadow:0 6px 16px rgba(203,108,230,0.38); }
+  .btn-secondary:hover{ background:var(--purple-dark); }
+  .btn-accent{ background:var(--yellow); color:var(--brown); box-shadow:0 6px 16px rgba(251,201,55,0.4); }
+  .btn-accent:hover{ background:var(--yellow-dark); }
+  .btn-outline{ background:transparent; border-color:var(--brown); color:var(--brown); }
+  .btn-outline:hover{ background:var(--brown); color:white; }
+  .btn-ghost{ background:transparent; color:var(--brown); }
+  .btn-ghost:hover{ background:#EDE6F7; }
+  .btn-dark{ background:var(--brown); color:white; }
+  .btn-dark:hover{ background:#432A1E; }
+  .btn[disabled]{ background:#E9E3F2; color:#B7A9C8; box-shadow:none; cursor:not-allowed; border-color:transparent; }
+  .btn.sm{ padding:9px 18px; font-size:13px; }
+  .btn.lg{ padding:16px 32px; font-size:16px; }
+  .btn svg{ width:16px; height:16px; }
+
+  .label-note{ font-size:12px; color:var(--ink-soft); font-weight:600; margin-bottom:10px; text-transform:uppercase; letter-spacing:.05em; }
+
+  /* ---------- Links ---------- */
+  .link-demo p{ font-size:15px; line-height:1.8; color:var(--brown-soft); max-width:56ch; }
+  a.text-link{ color:var(--pink-dark); text-decoration:underline; text-decoration-color: rgba(255,102,196,0.4); text-underline-offset:3px; font-weight:600; transition:color .15s ease, text-decoration-color .15s ease; }
+  a.text-link:hover{ color:var(--purple-dark); text-decoration-color:var(--purple-dark); }
+  a.link-subtle{ color:var(--brown); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px; font-weight:600; }
+  a.link-subtle:hover{ border-color:var(--brown); }
+  a.link-icon{ display:inline-flex; align-items:center; gap:6px; color:var(--purple-dark); font-weight:700; text-decoration:none; font-size:14px; }
+  a.link-icon svg{ width:14px; height:14px; transition:transform .15s ease; }
+  a.link-icon:hover svg{ transform:translateX(3px); }
+
+  /* ---------- Inputs ---------- */
+  .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field label{ font-size:13px; font-weight:700; color:var(--brown); }
+  .field .hint{ font-size:12px; color:var(--ink-soft); }
+  .field input[type=text], .field input[type=email], .field textarea, .field select{
+    font-family:'Open Sans', sans-serif; font-size:14.5px; color:var(--brown);
+    background:var(--lavender); border:1.5px solid var(--line); border-radius:var(--radius-sm);
+    padding:12px 14px; transition:border-color .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .field input::placeholder, .field textarea::placeholder{ color:#AC9CC0; }
+  .field input:hover, .field textarea:hover, .field select:hover{ border-color:#C9B8DE; }
+  .field input:focus, .field textarea:focus, .field select:focus{
+    outline:none; border-color:var(--purple); background:white; box-shadow:0 0 0 4px rgba(203,108,230,0.18);
+  }
+  .field.error input{ border-color:#E0507A; background:#FFF1F5; }
+  .field.error .hint{ color:#E0507A; font-weight:600; }
+  .field.success input{ border-color:#3FA772; background:#F0FBF5; }
+  .field textarea{ resize:vertical; min-height:90px; }
+
+  .check-row{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--brown); font-weight:600; }
+  .fake-checkbox{ width:20px; height:20px; border-radius:6px; border:2px solid var(--purple); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .fake-checkbox.checked{ background:var(--purple); }
+  .fake-checkbox.checked svg{ width:12px; height:12px; stroke:white; }
+  .fake-radio{ width:20px; height:20px; border-radius:50%; border:2px solid var(--pink); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .fake-radio.checked::after{ content:''; width:10px; height:10px; border-radius:50%; background:var(--pink); }
+
+  .toggle{ width:44px; height:26px; border-radius:var(--radius-pill); background:var(--line); position:relative; flex-shrink:0; cursor:pointer; }
+  .toggle::after{ content:''; position:absolute; width:20px; height:20px; border-radius:50%; background:white; top:3px; left:3px; box-shadow:0 1px 3px rgba(0,0,0,0.25); transition:left .15s ease; }
+  .toggle.on{ background:var(--pink); }
+  .toggle.on::after{ left:21px; }
+
+  /* ---------- Borders / Radius / Cards ---------- */
+  .radius-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:18px; }
+  .radius-box{ background:var(--lavender); border:2px solid var(--brown); height:90px; display:flex; align-items:flex-end; padding:12px; font-size:12px; font-weight:700; color:var(--brown-soft); font-family: ui-monospace, monospace; }
+
+  .border-styles{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:18px; margin-top:30px; }
+  .border-box{ height:70px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:12.5px; font-weight:700; color:var(--ink-soft); background:var(--lavender); }
+
+  .card-demo-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:20px; margin-top:30px; }
+  .card-demo{ background:white; border-radius:var(--radius-md); border:1px solid var(--line); padding:22px; box-shadow:var(--shadow-sm); transition:box-shadow .2s ease, transform .2s ease; }
+  .card-demo:hover{ box-shadow:var(--shadow-md); transform:translateY(-3px); }
+  .card-demo .icon-badge{ width:42px; height:42px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
+  .card-demo h4{ font-size:16px; font-family:'Open Sans',sans-serif; font-weight:700; }
+  .card-demo p{ font-size:13px; color:var(--ink-soft); margin-top:6px; line-height:1.5; }
+
+  /* ---------- Tags / Badges ---------- */
+  .tag{ display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; padding:6px 14px; border-radius:var(--radius-pill); }
+  .tag-pink{ background:#FFE3F3; color:var(--pink-dark); }
+  .tag-purple{ background:#F3E4FA; color:var(--purple-dark); }
+  .tag-yellow{ background:#FFF3D6; color:#96721B; }
+  .tag-brown{ background:#EFE6DF; color:var(--brown); }
+  .tag-outline{ background:transparent; border:1.5px solid var(--brown); color:var(--brown); }
+  .dot-status{ width:7px; height:7px; border-radius:50%; }
+
+  /* ---------- Icons ---------- */
+  .icon-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(96px,1fr)); gap:14px; }
+  .icon-tile{ background:white; border:1px solid var(--line); border-radius:var(--radius-md); padding:18px 8px; display:flex; flex-direction:column; align-items:center; gap:10px; }
+  .icon-tile svg{ width:24px; height:24px; stroke:var(--brown); fill:none; stroke-width:1.8; }
+  .icon-tile span{ font-size:10.5px; color:var(--ink-soft); font-weight:600; }
+
+  /* ---------- Alerts ---------- */
+  .alert{ display:flex; gap:14px; padding:16px 18px; border-radius:var(--radius-md); font-size:13.5px; align-items:flex-start; }
+  .alert svg{ width:20px; height:20px; flex-shrink:0; margin-top:1px; }
+  .alert strong{ display:block; margin-bottom:2px; font-size:14px; }
+  .alert-info{ background:#F3E4FA; color:var(--purple-dark); }
+  .alert-success{ background:#E4F6EC; color:#2C7C55; }
+  .alert-warning{ background:#FFF3D6; color:#96721B; }
+  .alert-error{ background:#FDE3EA; color:#C13463; }
+
+  footer{ margin-top:100px; padding:40px 0; border-top:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  footer p{ font-size:13px; color:var(--ink-soft); }
+
+  @media (max-width: 720px){
+    .wrap{ padding:0 20px 100px; }
+    .topnav{ display:none; }
+    .form-grid{ grid-template-columns:1fr; }
+    .font-cards{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brandmark"><span class="dot"></span> UI Kit</div>
+    <nav class="topnav">
+      <a href="#cores">Cores</a>
+      <a href="#tipografia">Tipografia</a>
+      <a href="#botoes">Botões</a>
+      <a href="#links">Links</a>
+      <a href="#inputs">Inputs</a>
+      <a href="#bordas">Bordas</a>
+      <a href="#tags">Tags</a>
+      <a href="#icons">Ícones</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">Style Guide · v1.0</span>
+    <h1>Um kit de interface cheio de personalidade.</h1>
+    <p class="lede">Cinco cores, duas fontes, um jeito só de existir. Este guia reúne os componentes essenciais — botões, campos, links e ícones — construídos a partir da paleta doce e contrastada abaixo.</p>
+    <div class="hero-swatches">
+      <div class="hero-chip" style="background:#FFE3F3;"><span class="swatch-dot" style="background:#FF66C4;"></span><span style="color:#E6449F;">#FF66C4</span></div>
+      <div class="hero-chip" style="background:#EFE6DF;"><span class="swatch-dot" style="background:#583A2A;"></span><span style="color:#583A2A;">#583A2A</span></div>
+      <div class="hero-chip" style="background:#F3E4FA;"><span class="swatch-dot" style="background:#CB6CE6;"></span><span style="color:#AD44CC;">#CB6CE6</span></div>
+      <div class="hero-chip" style="background:#FFF3D6;"><span class="swatch-dot" style="background:#FBC937;"></span><span style="color:#96721B;">#FBC937</span></div>
+      <div class="hero-chip" style="background:#FFFFFF; border:1px solid var(--line);"><span class="swatch-dot" style="background:#F1EEF9; border:1px solid var(--line);"></span><span style="color:#8A7264;">#F1EEF9</span></div>
+    </div>
+  </section>
+
+  <!-- ============ CORES ============ -->
+  <section class="block" id="cores">
+    <div class="block-head">
+      <div>
+        <div class="num">01 — Paleta</div>
+        <h2>Cores</h2>
+        <p>Cada cor tem um papel claro: uma primária vibrante, uma secundária vívida, um destaque quente, um neutro escuro e um neutro claro para fundo.</p>
+      </div>
+    </div>
+
+    <div class="color-grid">
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#FF66C4;"><span class="on-fill" style="color:white;">Aa</span></div>
+        <div class="swatch-meta">
+          <div class="name">Pink · Primária</div>
+          <div class="hex">#FF66C4</div>
+          <div class="usage">CTAs principais, botões primários, links de destaque, estados ativos.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#583A2A;"><span class="on-fill" style="color:white;">Aa</span></div>
+        <div class="swatch-meta">
+          <div class="name">Brown · Texto / Ink</div>
+          <div class="hex">#583A2A</div>
+          <div class="usage">Texto principal, títulos, ícones, botões escuros de contraste.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#CB6CE6;"><span class="on-fill" style="color:white;">Aa</span></div>
+        <div class="swatch-meta">
+          <div class="name">Purple · Secundária</div>
+          <div class="hex">#CB6CE6</div>
+          <div class="usage">Foco de inputs, botões secundários, elementos interativos.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#FBC937;"><span class="on-fill" style="color:#583A2A;">Aa</span></div>
+        <div class="swatch-meta">
+          <div class="name">Yellow · Destaque</div>
+          <div class="hex">#FBC937</div>
+          <div class="usage">Alertas de atenção, badges de destaque, botões de ênfase.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#F1EEF9;"><span class="on-fill" style="color:#583A2A;">Aa</span></div>
+        <div class="swatch-meta">
+          <div class="name">Lavender · Fundo</div>
+          <div class="hex">#F1EEF9</div>
+          <div class="usage">Fundo de página, campos de formulário, áreas de respiro.</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-fill" style="background:#FFFFFF; border-bottom:1px solid var(--line);"><span class="on-fill" style="color:#583A2A;">Aa</span></div>
+        <div class="swatch-meta">
+          <div class="name">White · Superfície</div>
+          <div class="hex">#FFFFFF</div>
+          <div class="usage">Cards, painéis, superfícies elevadas sobre o fundo lavanda.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIPOGRAFIA ============ -->
+  <section class="block" id="tipografia">
+    <div class="block-head">
+      <div>
+        <div class="num">02 — Type</div>
+        <h2>Tipografia</h2>
+        <p>Noto Serif Display para personalidade em títulos. Open Sans para clareza em textos de interface e corpo.</p>
+      </div>
+    </div>
+
+    <div class="font-cards">
+      <div class="font-card">
+        <div class="label">Display · Noto Serif Display</div>
+        <div class="big">Título elegante</div>
+        <div class="desc">Usada em títulos, headlines e momentos de destaque editorial. Pesos 500–700, com itálico disponível para ênfase sutil.</div>
+      </div>
+      <div class="font-card">
+        <div class="label">Corpo & UI · Open Sans</div>
+        <div class="big" style="font-family:'Open Sans',sans-serif; font-size:28px; font-weight:700;">Texto de interface</div>
+        <div class="desc">Usada em parágrafos, botões, formulários, labels e qualquer texto funcional. Pesos 400–800, alta legibilidade em telas pequenas.</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="type-row">
+        <div class="type-tag">Display / XL</div>
+        <div class="type-sample serif" style="font-size:48px; font-weight:600;">Aa Título Grande</div>
+        <div class="specs">64/1.05 · 600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-tag">Display / L</div>
+        <div class="type-sample serif" style="font-size:32px; font-weight:600;">Aa Título Médio</div>
+        <div class="specs">32/1.2 · 600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-tag">Display / M</div>
+        <div class="type-sample serif" style="font-size:22px; font-weight:600;">Aa Subtítulo</div>
+        <div class="specs">22/1.3 · 600</div>
+      </div>
+      <div class="type-row">
+        <div class="type-tag">Body / L</div>
+        <div class="type-sample sans" style="font-size:18px; font-weight:400;">Aa Texto de leitura confortável</div>
+        <div class="specs">18/1.6 · 400</div>
+      </div>
+      <div class="type-row">
+        <div class="type-tag">Body / M</div>
+        <div class="type-sample sans" style="font-size:15px; font-weight:400;">Aa Texto padrão de parágrafo</div>
+        <div class="specs">15/1.6 · 400</div>
+      </div>
+      <div class="type-row">
+        <div class="type-tag">Label</div>
+        <div class="type-sample sans" style="font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.05em;">Aa Rótulo de Campo</div>
+        <div class="specs">13/1.4 · 700 · caps</div>
+      </div>
+      <div class="type-row">
+        <div class="type-tag">Caption</div>
+        <div class="type-sample sans" style="font-size:12px; font-weight:600; color:var(--ink-soft);">Aa Texto auxiliar / legenda</div>
+        <div class="specs">12/1.4 · 600</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BOTÕES ============ -->
+  <section class="block" id="botoes">
+    <div class="block-head">
+      <div>
+        <div class="num">03 — Ações</div>
+        <h2>Botões</h2>
+        <p>Formato pílula em todos os botões, ecoando o formato dos swatches de cor. Hierarquia por cor e peso, nunca só por tamanho.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="label-note">Hierarquia</div>
+      <div class="row">
+        <button class="btn btn-primary">Botão primário</button>
+        <button class="btn btn-secondary">Botão secundário</button>
+        <button class="btn btn-accent">Botão de destaque</button>
+        <button class="btn btn-outline">Botão contornado</button>
+        <button class="btn btn-ghost">Botão fantasma</button>
+        <button class="btn btn-dark">Botão escuro</button>
+      </div>
+
+      <div class="row" style="margin-top:36px;">
+        <div class="label-note" style="width:100%;">Tamanhos</div>
+        <button class="btn btn-primary sm">Pequeno</button>
+        <button class="btn btn-primary">Padrão</button>
+        <button class="btn btn-primary lg">Grande</button>
+      </div>
+
+      <div class="row" style="margin-top:36px;">
+        <div class="label-note" style="width:100%;">Estados & com ícone</div>
+        <button class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          Adicionar
+        </button>
+        <button class="btn btn-secondary">
+          Continuar
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <button class="btn btn-primary" disabled>Desabilitado</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LINKS ============ -->
+  <section class="block" id="links">
+    <div class="block-head">
+      <div>
+        <div class="num">04 — Navegação</div>
+        <h2>Links</h2>
+        <p>Links de texto usam rosa sobre marrom para contraste calmo; links utilitários usam roxo com movimento no hover.</p>
+      </div>
+    </div>
+
+    <div class="panel link-demo">
+      <p>Este é um parágrafo com um <a href="#" class="text-link">link inline padrão</a> dentro do texto corrido, além de um <a href="#" class="link-subtle">link mais discreto</a> para ações secundárias.</p>
+      <div class="row" style="margin-top:26px;">
+        <a href="#" class="link-icon">Ver todos os componentes
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#" class="link-icon" style="color:var(--pink-dark);">Download do kit
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v11M7 12l5 5 5-5M5 21h14"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INPUTS ============ -->
+  <section class="block" id="inputs">
+    <div class="block-head">
+      <div>
+        <div class="num">05 — Formulários</div>
+        <h2>Inputs</h2>
+        <p>Campos com fundo lavanda em repouso, branco e anel roxo em foco. Estados de erro e sucesso claramente sinalizados.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="form-grid">
+        <div class="field">
+          <label>Nome completo</label>
+          <input type="text" placeholder="Como você se chama?">
+          <span class="hint">Usado no seu perfil público.</span>
+        </div>
+        <div class="field">
+          <label>E-mail</label>
+          <input type="email" placeholder="voce@email.com">
+        </div>
+        <div class="field error">
+          <label>Senha</label>
+          <input type="text" value="123">
+          <span class="hint">Use ao menos 8 caracteres.</span>
+        </div>
+        <div class="field success">
+          <label>Usuário</label>
+          <input type="text" value="@estudio.doce">
+          <span class="hint">Disponível ✓</span>
+        </div>
+        <div class="field" style="grid-column:1/-1;">
+          <label>Mensagem</label>
+          <textarea placeholder="Escreva algo bonito..."></textarea>
+        </div>
+        <div class="field">
+          <label>País</label>
+          <select>
+            <option>Brasil</option>
+            <option>Portugal</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Preferências</label>
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:4px;">
+            <div class="check-row"><div class="fake-checkbox checked"><svg viewBox="0 0 24 24" fill="none" stroke-width="3"><path d="M5 13l4 4L19 7"/></svg></div> Receber novidades</div>
+            <div class="check-row"><div class="fake-radio checked"></div> Plano mensal</div>
+            <div class="check-row"><div class="fake-radio"></div> Plano anual</div>
+            <div class="check-row">Modo escuro <div class="toggle on" style="margin-left:auto;"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BORDAS ============ -->
+  <section class="block" id="bordas">
+    <div class="block-head">
+      <div>
+        <div class="num">06 — Estrutura</div>
+        <h2>Bordas & Superfícies</h2>
+        <p>Escala de raio consistente do sutil ao total pílula, e três tratamentos de card usados no restante do produto.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="label-note">Raio de borda</div>
+      <div class="radius-grid">
+        <div class="radius-box" style="border-radius:8px;">sm · 8px</div>
+        <div class="radius-box" style="border-radius:14px;">md · 14px</div>
+        <div class="radius-box" style="border-radius:22px;">lg · 22px</div>
+        <div class="radius-box" style="border-radius:999px;">pill · 999px</div>
+      </div>
+
+      <div class="label-note" style="margin-top:36px;">Estilos de borda</div>
+      <div class="border-styles">
+        <div class="border-box" style="border:1.5px solid var(--line);">1.5px · line</div>
+        <div class="border-box" style="border:2px solid var(--brown);">2px · brown</div>
+        <div class="border-box" style="border:2px dashed var(--purple);">2px · dashed</div>
+        <div class="border-box" style="border:none; box-shadow:var(--shadow-md);">sem borda · shadow</div>
+      </div>
+
+      <div class="label-note" style="margin-top:36px;">Cards</div>
+      <div class="card-demo-grid">
+        <div class="card-demo">
+          <div class="icon-badge" style="background:#FFE3F3;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#E6449F" stroke-width="2"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.6 5 6.3 5c2 0 3.3 1.1 3.7 2 .4-.9 1.7-2 3.7-2 3.7 0 5.6 3.9 3.8 7.5C19 16.65 12 21 12 21z"/></svg>
+          </div>
+          <h4>Favoritos</h4>
+          <p>Card padrão com cantos médios e sombra suave no hover.</p>
+        </div>
+        <div class="card-demo">
+          <div class="icon-badge" style="background:#F3E4FA;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#AD44CC" stroke-width="2"><path d="M13 2L3 14h7l-1 8 11-14h-7l1-6z"/></svg>
+          </div>
+          <h4>Rápido</h4>
+          <p>Mesma superfície branca, ícone com fundo lilás claro.</p>
+        </div>
+        <div class="card-demo">
+          <div class="icon-badge" style="background:#FFF3D6;">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#96721B" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <h4>Agendado</h4>
+          <p>Ícone com fundo amarelo suave para conteúdo temporal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAGS ============ -->
+  <section class="block" id="tags">
+    <div class="block-head">
+      <div>
+        <div class="num">07 — Metadados</div>
+        <h2>Tags, Badges & Alertas</h2>
+        <p>Pequenos rótulos coloridos para status e categorização, além de mensagens de feedback do sistema.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="label-note">Tags</div>
+      <div class="row">
+        <span class="tag tag-pink">Novo</span>
+        <span class="tag tag-purple">Em destaque</span>
+        <span class="tag tag-yellow">Popular</span>
+        <span class="tag tag-brown">Arquivado</span>
+        <span class="tag tag-outline">Rascunho</span>
+        <span class="tag tag-pink"><span class="dot-status" style="background:#E6449F;"></span> Online</span>
+      </div>
+
+      <div class="label-note" style="margin-top:36px;">Alertas</div>
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div class="alert alert-info">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+          <div><strong>Dica</strong>Você pode reordenar os componentes arrastando pelo ícone.</div>
+        </div>
+        <div class="alert alert-success">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+          <div><strong>Salvo</strong>Suas alterações foram publicadas com sucesso.</div>
+        </div>
+        <div class="alert alert-warning">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L2.5 18a1 1 0 0 0 .9 1.5h17.2a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.4 0z"/></svg>
+          <div><strong>Atenção</strong>Este plano expira em 3 dias.</div>
+        </div>
+        <div class="alert alert-error">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg>
+          <div><strong>Erro</strong>Não foi possível conectar ao servidor.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ICONS ============ -->
+  <section class="block" id="icons">
+    <div class="block-head">
+      <div>
+        <div class="num">08 — Iconografia</div>
+        <h2>Ícones</h2>
+        <p>Set line-icon, traço 1.8px, cor marrom sobre superfícies claras — consistente com o peso da Open Sans.</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="icon-grid">
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3v-6h6v6h3a1 1 0 001-1V10"/></svg><span>Início</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><span>Buscar</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.9 2.6 5 6.3 5c2 0 3.3 1.1 3.7 2 .4-.9 1.7-2 3.7-2 3.7 0 5.6 3.9 3.8 7.5C19 16.65 12 21 12 21z"/></svg><span>Curtir</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg><span>Adicionar</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg><span>Fechar</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 4v6h6M20 20v-6h-6M20 9a8 8 0 00-14.6-3M4 15a8 8 0 0014.6 3"/></svg><span>Atualizar</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M3 7l9 6 9-6M4 5h16a1 1 0 011 1v12a1 1 0 01-1 1H4a1 1 0 01-1-1V6a1 1 0 011-1z"/></svg><span>E-mail</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg><span>Perfil</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span>Agenda</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg><span>Painel</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.9l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.9-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1-1.6 1.7 1.7 0 00-1.9.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.9 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1 1.7 1.7 0 00-.3-1.9l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.9.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.9-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.9V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg><span>Ajustes</span></div>
+        <div class="icon-tile"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><span>Sucesso</span></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>UI Kit — construído com Noto Serif Display &amp; Open Sans</p>
+    <p>FF66C4 · 583A2A · CB6CE6 · FBC937 · F1EEF9</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
