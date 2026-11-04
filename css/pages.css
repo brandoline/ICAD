@@ -1,0 +1,9 @@
+@import url("style.css");
+
+main{
+    max-width: 1200px;
+    padding: var(--spacing);
+    min-height: 100dvh;
+    display: flex;
+    gap: var(--spacing);
+}
