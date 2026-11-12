@@ -13,10 +13,6 @@ html{
 }
 
 section{
-    min-height: 80dvh;
-}
-
-section, section p{
     margin-bottom: var(--spacing-m);
 }
 
@@ -76,8 +72,8 @@ p, span, li, a{
 }
 
 .btn-principal{
-    background-color: var(--rose-300);
-    border: 2px solid var(--rose-300);
+    background-color: var(--rose-500);
+    border: 2px solid var(--rose-500);
     box-shadow: var(--shadow-sm);
     color: var(--cream-100);
     font-weight: 700;
@@ -265,13 +261,17 @@ ul{
 ==========================
 */
 .numero-emergencia{
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: var(--rose-50);
+    background-color: var(--cocoa-800);
     padding: var(--spacing-m);
+    border-radius: var(--radius);
+}
+
+.numero-emergencia h2{
+    color: var(--accent);
 }
 
 .numeros{
@@ -284,10 +284,9 @@ ul{
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 15rem;
     text-align: center;
-    padding: var(--spacing);
-    border: 1px solid var(--rose-500);
+    padding: var(--spacing-xs);
+    border: 2px solid var(--accent);
     border-radius: var(--radius);
     background-color: var(--cream-100);
     box-shadow: var(--shadow-sm);
@@ -312,10 +311,22 @@ ul{
     text-align: justify;
 }
 
-.sobre p{
-    margin-bottom: var(--spacing-m);
+.info-icon{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: var(--radius);
+    border: none;
+    background-color: var(--rose-200);
+    padding: var(--spacing);
 }
 
+div:has(.info-icon){
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing);
+}
 /*
 ==========================
     REDES E EVENTOS
@@ -374,8 +385,10 @@ ul{
     text-align: justify;
 }
 
-.ajuda p{
-    margin-bottom: var(--spacing-m);
+.ajuda-info{
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
 }
 
 .ajuda-text{
@@ -390,15 +403,30 @@ ul{
 
 .btns{
     display: flex;
-    gap: var(--spacing-s);
-    margin-bottom: var(--spacing-m);
+    flex-direction: column;
+    gap: var(--spacing-m);
+    background-color: var(--rose-100);
+    padding: var(--spacing-m);
+    border-radius: var(--radius);
+    text-align: center;
 }
 
-.caixinha p{
-    border-bottom: 1px solid var(--cocoa-600);
-    padding-bottom: var(--spacing-s);
-    margin-bottom: var(--spacing-m);
+.card-ajuda{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-m);
+    border-radius: var(--radius);
+    border: 1px solid var(--cocoa-600);
 }
+
+.card-info-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing);
+}
+
 
 /*
 ==========================
@@ -453,12 +481,26 @@ footer{
     display: flex;
     flex-direction: column;
     gap: var(--spacing);
-    background-color: var(--cocoa-500);
+    background-color: var(--cream-300);
     padding: var(--spacing);
-    color: var(--cocoa-800);
+    color: var(--rose-100);
+}
+
+footer .titulo{
+    display: flex;
+    flex-direction: column;
+}
+
+footer .titulo .icons{
+    display: flex;
+    justify-content: center;
 }
 
 footer p{
+    font-size: var(--spacing-s);
+}
+
+footer a{
     font-size: var(--spacing-s);
 }
 
@@ -499,9 +541,8 @@ footer .direitos{
     }
 
     .numeros{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .social{
@@ -523,6 +564,13 @@ footer .direitos{
     .ajuda-text{
         display: flex;
         flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .video{
+        display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
     }
