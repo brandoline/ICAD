@@ -3,8 +3,7 @@ const slides = document.querySelectorAll('.slide');
 const btnAnterior = document.querySelector('.anterior');
 const btnProximo = document.querySelector('.proximo');
 const areaBolinhas = document.querySelector('.bolinhas');
-const pixDialog = document.getElementById('pixDialog');
-const btnPix = document.querySelector('.ajudarPix');
+const perguntas = document.querySelectorAll(".pergunta-resposta");
 
 let atual = 0;
 
@@ -29,6 +28,20 @@ btnProximo.addEventListener('click', () => irPara(atual + 1));
 
 irPara(0);
 
-btnPix.addEventListener('click', function(){
-    btnPix.showModal();
-})
+perguntas.forEach(pergunta => {
+    pergunta.addEventListener('click', () => {
+        const resposta = pergunta.querySelector('.resposta');
+        const fechar = pergunta.querySelector('.fechar');
+        const estaAberta = resposta.classList.contains('aberta');
+
+        pergunta.classList.toggle('shadow');
+        fechar.classList.toggle('rotate45');
+        resposta.classList.toggle('aberta');
+
+        if (!estaAberta) {
+            resposta.style.maxHeight = resposta.scrollHeight + 'px';
+        } else {
+            resposta.style.maxHeight = null;
+        }
+    });
+});
