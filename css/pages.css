@@ -1,9 +1,52 @@
 @import url("style.css");
 
+body{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header{
+    width: 100%;
+}
+
 main{
-    max-width: 1200px;
+    max-width: 800px;
     padding: var(--spacing);
     min-height: 100dvh;
+    display: center;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing);
+}
+
+footer{
+    width: 100%;
+}
+
+footer .direitos{
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    text-align: justify;
+}
+
+.btn-accent{
+    width: 100%;
+    margin: var(--spacing) 0;
+    display: flex;
+    flex-direction: row;
+    padding: var(--spacing);
+}
+
+.doacao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: var(--spacing);
 }

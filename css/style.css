@@ -419,6 +419,11 @@ iframe{
     padding: var(--spacing);
     border: 1px solid var(--cocoa-800);
     border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+}
+
+.card-redes:hover{
+    box-shadow: var(--shadow-md);
 }
 
 .card-redes img{
@@ -448,9 +453,14 @@ iframe{
     flex-direction: row-reverse;
 }
 
+.btn > .icon{
+    width: 48px;
+    height: 48px;
+}
+
 .icon{
-    width: 32px;
-    height: 32px;
+    width: 16px;
+    height: 16px;
 }
 
 .btns{
@@ -551,6 +561,7 @@ iframe{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: var(--spacing-m);
 }
 
 .padrinhos-grid{
@@ -562,7 +573,7 @@ iframe{
 .circle{
     width: 96px;
     height: 96px;
-    border: 0.5px solid gray;
+    /*border: 0.5px solid gray;*/
 }
 
 .caixas-encontrar{
@@ -572,6 +583,12 @@ iframe{
 
 .caixinha{
     width: 100%;
+}
+
+
+.btn-accent{
+    width: 40%;
+    font-size: var(--spacing);
 }
 /*
 ==========================
@@ -596,6 +613,8 @@ footer .titulo{
 footer .titulo .icons{
     display: flex;
     justify-content: center;
+    margin: var(--spacing) 0;
+    gap: var(--spacing);
 }
 
 footer p{
@@ -612,6 +631,7 @@ footer .titulo{
 }
 
 footer .direitos{
+    width: 100%;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -688,18 +708,30 @@ footer .direitos{
         align-items: center;
     }
 
+    .padrinhos-grid{
+        gap: var(--spacing-m);
+    }
+
     .btn-accent{
-        width: 40%;
+        width: 50%;
         font-size: var(--spacing);
     }
 
-    .padrinhos-grid{
-        gap: var(--spacing-m);
+    footer .titulo{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
     }
 }
 
 @media (min-width: 1200px){
     .container{
         width: 1200px;
+    }
+
+   .btn-accent{
+        width: 100%;
+        font-size: var(--spacing);
     }
 }
